@@ -1,0 +1,27 @@
+﻿@model IEnumerable<CQRS.Meetup.Domain.ReadModel.ProductDto>
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h2>Products</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.Quantity</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
