@@ -1,6 +1,6 @@
 ﻿using CQRS.Meetup.Domain.Commands;
 
-namespace CQRS.Meetup.Data.CommandBus
+namespace CQRS.Meetup.Domain.CommandBus
 {
     public interface ICommandSender
     {

@@ -1,4 +1,5 @@
-﻿using CQRS.Meetup.Domain.WriteModel;
+﻿using CQRS.Meetup.Data.Models;
+using CQRS.Meetup.Domain.WriteModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace CQRS.Meetup.Data

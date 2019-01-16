@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace CQRS.Meetup.Domain.WriteModel
+namespace CQRS.Meetup.Data.Models
 {
-    //todo gub : better place ? need to deplace it in data (and create another model for write)
     public class Product
     {
         public Guid Id { get; set; }

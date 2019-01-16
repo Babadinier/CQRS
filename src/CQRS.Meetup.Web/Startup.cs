@@ -1,7 +1,6 @@
 ﻿using CQRS.Meetup.Data.Adapters;
-using CQRS.Meetup.Data.CommandBus;
 using CQRS.Meetup.Data.Repositories;
-using CQRS.Meetup.Domain.Commands;
+using CQRS.Meetup.Domain;
 using CQRS.Meetup.Domain.CommandsHandler;
 using CQRS.Meetup.Domain.ReadModel;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +9,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
+using CQRS.Meetup.Data.Repositories.Products;
+using CQRS.Meetup.Domain.Commands.Products;
+using CQRS.Meetup.Domain.CommandsHandler.Products;
+using CQRS.Meetup.Domain.Queries.Products;
+using CQRS.Meetup.Domain.QueriesHandler;
+using CQRS.Meetup.Domain.QueriesHandler.Products;
+using CQRS.Meetup.Domain.ReadModel.Products;
+using CQRS.Meetup.Domain.WriteModel.Products;
 
 namespace CQRS.Meetup.Web
 {
@@ -35,12 +43,18 @@ namespace CQRS.Meetup.Web
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             //todo gub : better place to initialize it ? 
-            var bus = new CommandBus();
+            //var bus = new CommandBus();
 
-            var createProductCommand = new CreateProductCommandHandler(new ProductRepository());
-            bus.RegisterHandler<CreateProductCommand>(createProductCommand.Handle);
+            //var createProductCommand = new CreateProductCommandHandler(new ProductRepository());
+            //bus.RegisterHandler<CreateProductCommand>(createProductCommand.Handle);
 
-            services.AddSingleton<ICommandSender>(bus);
+            //services.AddSingleton<ICommandSender>(bus);
+
+
+            services.AddTransient<ICommandHandler<CreateProductCommand>, CreateProductCommandHandler>();
+            services.AddTransient<IQueryHandler<GetListQuery, List<ProductDto>>, GetListQueryHandler>();
+            services.AddSingleton<Messages>();
+            services.AddTransient<ICreateProduct, ProductRepository>();
             services.AddSingleton<IProvideProduct, ProductsAdapter>();
         }
 

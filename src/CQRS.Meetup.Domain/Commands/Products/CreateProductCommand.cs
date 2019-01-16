@@ -1,9 +1,9 @@
-﻿namespace CQRS.Meetup.Domain.Commands
+﻿namespace CQRS.Meetup.Domain.Commands.Products
 {
     public class CreateProductCommand : ICommand
     {
-        public string Name { get; set; }
-        public int Quantity { get; set; }
+        public string Name { get; }
+        public int Quantity { get; }
 
         public CreateProductCommand(string name, int quantity)
         {

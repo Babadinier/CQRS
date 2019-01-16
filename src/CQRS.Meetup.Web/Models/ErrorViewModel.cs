@@ -1,5 +1,3 @@
-using System;
-
 namespace CQRS.Meetup.Web.Models
 {
     public class ErrorViewModel

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CQRS.Meetup.Domain.ReadModel
+namespace CQRS.Meetup.Domain.ReadModel.Products
 {
     public class ProductDto
     {

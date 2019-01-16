@@ -1,8 +1,8 @@
-﻿using CQRS.Meetup.Domain.Commands;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using CQRS.Meetup.Domain.Commands;
 
-namespace CQRS.Meetup.Data.CommandBus
+namespace CQRS.Meetup.Domain.CommandBus
 {
     public class CommandBus : ICommandSender
     {
