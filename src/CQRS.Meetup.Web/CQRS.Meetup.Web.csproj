@@ -11,8 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CQRS.Meetup.Database\CQRS.Meetup.Data.csproj" />
-    <ProjectReference Include="..\CQRS.Meetup.Domain\CQRS.Meetup.Domain.csproj" />
+    <ProjectReference Include="..\..\CQRS.Meetup.Infra\CQRS.Meetup.Infra.csproj" />
+    <ProjectReference Include="..\..\CQRS.Meetup.Read\CQRS.Meetup.Read.csproj" />
+    <ProjectReference Include="..\..\CQRS.Meetup.Write\CQRS.Meetup.Write.csproj" />
   </ItemGroup>
 
 </Project>

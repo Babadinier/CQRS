@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CQRS.Meetup.Domain\CQRS.Meetup.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Migrations\20190107142842_InitialCreate.Designer.cs">
       <DependentUpon>20190107142842_InitialCreate.cs</DependentUpon>
     </Compile>

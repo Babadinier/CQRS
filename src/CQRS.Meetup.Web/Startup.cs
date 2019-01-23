@@ -1,23 +1,21 @@
-﻿using CQRS.Meetup.Data.Adapters;
-using CQRS.Meetup.Data.Repositories;
-using CQRS.Meetup.Domain;
-using CQRS.Meetup.Domain.CommandsHandler;
-using CQRS.Meetup.Domain.ReadModel;
+﻿using System.Collections.Generic;
+using CQRS.Meetup.Infra;
+using CQRS.Meetup.Infra.Repositories.Products;
+using CQRS.Meetup.Read;
+using CQRS.Meetup.Read.Queries.Products;
+using CQRS.Meetup.Read.QueriesHandler;
+using CQRS.Meetup.Read.QueriesHandler.Products;
+using CQRS.Meetup.Read.ReadModel.Products;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
-using CQRS.Meetup.Data.Repositories.Products;
-using CQRS.Meetup.Domain.Commands.Products;
-using CQRS.Meetup.Domain.CommandsHandler.Products;
-using CQRS.Meetup.Domain.Queries.Products;
-using CQRS.Meetup.Domain.QueriesHandler;
-using CQRS.Meetup.Domain.QueriesHandler.Products;
-using CQRS.Meetup.Domain.ReadModel.Products;
-using CQRS.Meetup.Domain.WriteModel.Products;
+using CQRS.Meetup.Write.Commands.Products;
+using CQRS.Meetup.Write.CommandsHandler;
+using CQRS.Meetup.Write.CommandsHandler.Products;
+using CQRS.Meetup.Write.Repositories;
 
 namespace CQRS.Meetup.Web
 {
@@ -52,10 +50,12 @@ namespace CQRS.Meetup.Web
 
 
             services.AddTransient<ICommandHandler<CreateProductCommand>, CreateProductCommandHandler>();
-            services.AddTransient<IQueryHandler<GetListQuery, List<ProductDto>>, GetListQueryHandler>();
-            services.AddSingleton<Messages>();
-            services.AddTransient<ICreateProduct, ProductRepository>();
-            services.AddSingleton<IProvideProduct, ProductsAdapter>();
+            services.AddTransient<IQueryHandler<GetProductsQuery, List<ProductDto>>, GetListQueryHandler>();
+            services.AddSingleton<CommandProcessor>();
+            services.AddSingleton<QueryProcessor>();
+            services.AddScoped<CQRSContext>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddSingleton<IProvideProduct, ProductProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

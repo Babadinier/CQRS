@@ -1,10 +1,12 @@
-﻿using CQRS.Meetup.Domain;
-using CQRS.Meetup.Web.ViewModels;
+﻿using CQRS.Meetup.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using CQRS.Meetup.Domain.Commands.Products;
-using CQRS.Meetup.Domain.Queries.Products;
-using CQRS.Meetup.Domain.ReadModel.Products;
+using CQRS.Meetup.Infra;
+using CQRS.Meetup.Read;
+using CQRS.Meetup.Read.Queries.Products;
+using CQRS.Meetup.Read.ReadModel.Products;
+using CQRS.Meetup.Write;
+using CQRS.Meetup.Write.Commands.Products;
 
 namespace CQRS.Meetup.Web.Controllers
 {
@@ -19,13 +21,15 @@ namespace CQRS.Meetup.Web.Controllers
         //    _provideProduct = provideProduct;
         //}
 
-        private readonly IProvideProduct _provideProduct;
-        private readonly Messages _messages;
+        //private readonly IProvideProduct _provideProduct;
+        private readonly CommandProcessor _commandProcessor;
+        private readonly QueryProcessor _queryProcessor;
 
-        public ProductController(Messages messages, IProvideProduct provideProduct)
+        public ProductController(CommandProcessor commandProcessor, QueryProcessor queryProcessor)
         {
-            _messages = messages;
-            _provideProduct = provideProduct;
+            _commandProcessor = commandProcessor;
+            _queryProcessor = queryProcessor;
+            //_provideProduct = provideProduct;
         }
 
         public IActionResult Index()
@@ -37,9 +41,9 @@ namespace CQRS.Meetup.Web.Controllers
         public IActionResult CreateProduct(ProductViewModel product)
         {
             var command = new CreateProductCommand(product.Name, product.Quantity);
-            _messages.Dispatch(command);
+            _commandProcessor.Dispatch(command);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Products");
         }
 
         [HttpGet]
@@ -50,7 +54,7 @@ namespace CQRS.Meetup.Web.Controllers
             //var products = _provideProduct.RetrieveProducts();
             //return View(products);
 
-            List<ProductDto> products = _messages.Dispatch(new GetListQuery());
+            var products = _queryProcessor.Dispatch(new GetProductsQuery());
             return View(products);
         }
     }

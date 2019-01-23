@@ -1,0 +1,1 @@
+﻿dotnet ef migrations add Initial --project CQRS.Meetup.Write
