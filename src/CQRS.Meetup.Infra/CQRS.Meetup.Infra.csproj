@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CQRS.Meetup.Read\CQRS.Meetup.Read.csproj" />
     <ProjectReference Include="..\CQRS.Meetup.Write\CQRS.Meetup.Write.csproj" />
   </ItemGroup>
 

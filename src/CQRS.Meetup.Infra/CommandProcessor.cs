@@ -14,15 +14,12 @@ namespace CQRS.Meetup.Infra
             _serviceProvider = serviceProvider;
         }
 
-        public void Dispatch(ICommand command)
+        public void Dispatch<T>(T command) where T : ICommand
         {
-            Type type = typeof(ICommandHandler<>);
-            Type[] typeArgs = { command.GetType() };
-            Type handlerType = type.MakeGenericType(typeArgs);
             using (var scope = _serviceProvider.CreateScope())
             {
-                dynamic handler = scope.ServiceProvider.GetService(handlerType);
-                handler.Handle((dynamic)command);
+                var handler = scope.ServiceProvider.GetService<ICommandHandler<T>>();
+                handler.Handle(command);
             }
         }
     }
