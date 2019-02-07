@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using CQRS.Meetup.Infra;
 using CQRS.Meetup.Infra.Repositories.Products;
-using CQRS.Meetup.Read;
 using CQRS.Meetup.Read.Queries.Products;
 using CQRS.Meetup.Read.QueriesHandler;
 using CQRS.Meetup.Read.QueriesHandler.Products;
@@ -40,18 +39,19 @@ namespace CQRS.Meetup.Web
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddTransient<ICommandHandler<CreateProductCommand>, CreateProductCommandHandler>();
-            services.AddTransient<IQueryHandler<GetProductsQuery, List<ProductDto>>, GetListQueryHandler>();
-            services.AddSingleton<CommandProcessor>();
-            services.AddSingleton<QueryProcessor>();
-
             services.AddDbContext<CQRSContext>(opts =>
             {
                 opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            // ---- Commands
+            services.AddScoped<CommandProcessor>();
+            services.AddTransient<ICommandHandler<CreateProductCommand>, CreateProductCommandHandler>();
             services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddSingleton<IProvideProduct, ProductProvider>();
+
+            // ---- Queries
+            services.AddScoped<QueryProcessor>();
+            services.AddTransient<IQueryHandler<GetProductsQuery, IReadOnlyCollection<ProductDto>>, ProductsQueriesHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -15,21 +15,18 @@ namespace CQRS.Meetup.Infra
         {
             _serviceProvider = serviceProvider;
         }
-        
+
         public T Dispatch<T>(IQuery<T> query)
         {
             var dispatchMethod = OpenDispatchMethod.MakeGenericMethod(query.GetType(), typeof(T));
-            return (T)dispatchMethod.Invoke(this, new object[] {query});
+            return (T)dispatchMethod.Invoke(this, new object[] { query });
         }
 
         private TResult DispatchInternal<TQuery, TResult>(TQuery query)
             where TQuery : IQuery<TResult>
         {
-            using (var scope = _serviceProvider.CreateScope())
-            {
-                var handler = scope.ServiceProvider.GetService< IQueryHandler <TQuery,TResult>> ();
-                return handler.Handle(query);
-            }
+            var handler = _serviceProvider.GetService<IQueryHandler<TQuery, TResult>>();
+            return handler.Handle(query);
         }
     }
 }

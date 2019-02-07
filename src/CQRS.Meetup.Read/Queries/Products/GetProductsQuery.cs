@@ -4,7 +4,7 @@ using CQRS.Meetup.Read.ReadModel.Products;
 
 namespace CQRS.Meetup.Read.Queries.Products
 {
-    public sealed class GetProductsQuery : IQuery<List<ProductDto>>
+    public sealed class GetProductsQuery : IQuery<IReadOnlyCollection<ProductDto>>
     {
 
     }
