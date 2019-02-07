@@ -16,6 +16,7 @@ using CQRS.Meetup.Write.Commands.Products;
 using CQRS.Meetup.Write.CommandsHandler;
 using CQRS.Meetup.Write.CommandsHandler.Products;
 using CQRS.Meetup.Write.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace CQRS.Meetup.Web
 {
@@ -39,22 +40,17 @@ namespace CQRS.Meetup.Web
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            //todo gub : better place to initialize it ? 
-            //var bus = new CommandBus();
-
-            //var createProductCommand = new CreateProductCommandHandler(new ProductRepository());
-            //bus.RegisterHandler<CreateProductCommand>(createProductCommand.Handle);
-
-            //services.AddSingleton<ICommandSender>(bus);
-
-
             services.AddTransient<ICommandHandler<CreateProductCommand>, CreateProductCommandHandler>();
             services.AddTransient<IQueryHandler<GetProductsQuery, List<ProductDto>>, GetListQueryHandler>();
             services.AddSingleton<CommandProcessor>();
             services.AddSingleton<QueryProcessor>();
-            services.AddScoped<CQRSContext>();
-            services.AddTransient<IProductRepository, ProductRepository>();
+
+            services.AddDbContext<CQRSContext>(opts =>
+            {
+                opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddSingleton<IProvideProduct, ProductProvider>();
         }
 
