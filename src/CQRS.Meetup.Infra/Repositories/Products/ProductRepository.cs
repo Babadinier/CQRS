@@ -30,5 +30,10 @@ namespace CQRS.Meetup.Infra.Repositories.Products
         {
             return _context.Products.FirstOrDefault(p => p.Name == name);
         }
+
+        public bool Exists(string name)
+        {
+            return _context.Products.Any(p => p.Name == name);
+        }
     }
 }

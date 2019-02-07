@@ -18,11 +18,10 @@ namespace CQRS.Meetup.Write.CommandsHandler.Products
 
         public void Handle(CreateProductCommand command)
         {
-            // todo pfe : pas de null mais exists
-            var product = _productRepository.GetByName(command.Name);
-            if (product == null)
+            var existingProduct = _productRepository.Exists(command.Name);
+            if (!existingProduct)
             {
-                product = new Product(Guid.NewGuid(), command.Name, command.Quantity);
+                var product = new Product(Guid.NewGuid(), command.Name, command.Quantity);
                 _productRepository.Create(product);
             }
             else

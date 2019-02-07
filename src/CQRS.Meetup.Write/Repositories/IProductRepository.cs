@@ -10,5 +10,7 @@ namespace CQRS.Meetup.Write.Repositories
         Product Get(Guid id);
 
         Product GetByName(string name);
+
+        bool Exists(string name);
     }
 }
