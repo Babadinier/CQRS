@@ -10,9 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CQRS.Meetup.Infra\CQRS.Meetup.Infra.csproj" />
-    <ProjectReference Include="..\CQRS.Meetup.Read\CQRS.Meetup.Read.csproj" />
-    <ProjectReference Include="..\CQRS.Meetup.Write\CQRS.Meetup.Write.csproj" />
+    <ProjectReference Include="..\CQRS.Meetup.Infra\03.CQRS.Meetup.Infra.csproj" />
+    <ProjectReference Include="..\CQRS.Meetup.Read\02.CQRS.Meetup.Read.csproj" />
+    <ProjectReference Include="..\CQRS.Meetup.Write\01.CQRS.Meetup.Write.csproj" />
   </ItemGroup>
 
 </Project>

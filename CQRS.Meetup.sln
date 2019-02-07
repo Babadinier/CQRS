@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Meetup.Web", "src\CQRS.Meetup.Web\CQRS.Meetup.Web.csproj", "{DC03FC4C-26F6-424C-A8CC-9F3F8BD87FB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.CQRS.Meetup.Web", "src\CQRS.Meetup.Web\04.CQRS.Meetup.Web.csproj", "{DC03FC4C-26F6-424C-A8CC-9F3F8BD87FB5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Meetup.Write", "src\CQRS.Meetup.Write\CQRS.Meetup.Write.csproj", "{183CA789-F83C-434F-B93A-42066797AE7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.CQRS.Meetup.Write", "src\CQRS.Meetup.Write\01.CQRS.Meetup.Write.csproj", "{183CA789-F83C-434F-B93A-42066797AE7C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Meetup.Infra", "src\CQRS.Meetup.Infra\CQRS.Meetup.Infra.csproj", "{0A5D22F7-7031-4E24-954F-CC1E6D8634DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.CQRS.Meetup.Infra", "src\CQRS.Meetup.Infra\03.CQRS.Meetup.Infra.csproj", "{0A5D22F7-7031-4E24-954F-CC1E6D8634DD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Meetup.Read", "src\CQRS.Meetup.Read\CQRS.Meetup.Read.csproj", "{B9A63B48-6D0B-47F7-9FE5-C579D4D625F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.CQRS.Meetup.Read", "src\CQRS.Meetup.Read\02.CQRS.Meetup.Read.csproj", "{B9A63B48-6D0B-47F7-9FE5-C579D4D625F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
