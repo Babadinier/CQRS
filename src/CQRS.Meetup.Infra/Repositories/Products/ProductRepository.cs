@@ -4,7 +4,6 @@ using CQRS.Meetup.Write.Models;
 
 namespace CQRS.Meetup.Infra.Repositories.Products
 {
-    //todo: need to dispatch repository (one for create, one for read). Agree ? (ProductRepositoryRepository and ProvideProductRepository)
     public class ProductRepository : Write.Repositories.IProductRepository
     {
 

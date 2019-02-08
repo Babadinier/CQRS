@@ -5,8 +5,6 @@ using CQRS.Meetup.Write.Repositories;
 
 namespace CQRS.Meetup.Write.CommandsHandler.Products
 {
-    //todo gub : "CQRS in practice" on pluralsight said that CommandHandler need to go to Application Services (Web). Best place ? 
-    //todo gub : "CQRS in practice regroup commandHandler with command with internal sealed class. This allows to delete command with commandHandler. Add it in README ?
     public class CreateProductCommandHandler : ICommandHandler<CreateProductCommand>
     {
         private readonly IProductRepository _productRepository;

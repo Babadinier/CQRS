@@ -10,18 +10,8 @@ using CQRS.Meetup.Write.Commands.Products;
 
 namespace CQRS.Meetup.Web.Controllers
 {
-    //todo gub : use CommandBus or Messages ? 
     public class ProductController : Controller
     {
-        //With CommandBus
-        //private readonly ICommandSender _commandBus;
-        //public ProductController(ICommandSender commandBus, IProvideProduct provideProduct)
-        //{
-        //    _commandBus = commandBus;
-        //    _provideProduct = provideProduct;
-        //}
-
-        //private readonly IProvideProduct _provideProduct;
         private readonly CommandProcessor _commandProcessor;
         private readonly QueryProcessor _queryProcessor;
 
@@ -29,7 +19,6 @@ namespace CQRS.Meetup.Web.Controllers
         {
             _commandProcessor = commandProcessor;
             _queryProcessor = queryProcessor;
-            //_provideProduct = provideProduct;
         }
 
         public IActionResult Index()
@@ -49,11 +38,6 @@ namespace CQRS.Meetup.Web.Controllers
         [HttpGet]
         public IActionResult Products()
         {
-
-            //With IProvideProduct
-            //var products = _provideProduct.RetrieveProducts();
-            //return View(products);
-
             var products = _queryProcessor.Dispatch(new GetProductsQuery());
             return View(products);
         }
