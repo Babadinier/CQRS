@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace CQRS.Meetup.Read.ReadModel.Products
+﻿namespace CQRS.Meetup.Read.ReadModel.Products
 {
     public class ProductDto
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public int Quantity { get; set; }
     }

@@ -22,7 +22,7 @@ namespace CQRS.Meetup.Read.QueriesHandler.Products
             using (var connection = new SqlConnection(_connectionString))
             {
                 var products = connection
-                                .Query<ProductDto>(@"select * from Products order by Name, Quantity")
+                                .Query<ProductDto>(@"select Name, Quantity from Products order by Name, Quantity")
                                 .ToImmutableList();
 
                 return products;

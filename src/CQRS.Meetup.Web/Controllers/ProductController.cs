@@ -48,7 +48,9 @@ namespace CQRS.Meetup.Web.Controllers
         [HttpGet]
         public IActionResult Products()
         {
-            var products = _queryProcessor.Dispatch(new GetProductsQuery());
+            var getProductsQuery = new GetProductsQuery();
+            var products = _queryProcessor.Dispatch(getProductsQuery);
+
             return View(products);
         }
     }
