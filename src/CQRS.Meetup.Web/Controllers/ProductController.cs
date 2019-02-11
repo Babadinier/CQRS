@@ -1,11 +1,8 @@
-﻿using CQRS.Meetup.Web.ViewModels;
+﻿using System;
+using CQRS.Meetup.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using CQRS.Meetup.Infra;
-using CQRS.Meetup.Read;
 using CQRS.Meetup.Read.Queries.Products;
-using CQRS.Meetup.Read.ReadModel.Products;
-using CQRS.Meetup.Write;
 using CQRS.Meetup.Write.Commands.Products;
 
 namespace CQRS.Meetup.Web.Controllers
@@ -29,8 +26,21 @@ namespace CQRS.Meetup.Web.Controllers
         [HttpPost]
         public IActionResult CreateProduct(ProductViewModel product)
         {
-            var command = new CreateProductCommand(product.Name, product.Quantity);
-            _commandProcessor.Dispatch(command);
+            if(!ModelState.IsValid)
+            {
+                return View("Index", product);
+            }
+
+            try
+            {
+                var command = new CreateProductCommand(product.Name, product.Quantity);
+                _commandProcessor.Dispatch(command);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View("Index", product);
+            }
 
             return RedirectToAction("Products");
         }
