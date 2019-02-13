@@ -4,5 +4,5 @@ Code exemple for the [DevTalks .NET  #6 meetup](https://www.meetup.com/fr-FR/Dev
 By [@badinierG](https://twitter.com/BadinierG) and [@poldkuran](https://twitter.com/polkduran).
  - A single database for reads and writes.
  - Entity Framework Core for the write side.
- - Daper for the read side.
+ - Dapper for the read side.
  - Basic Command and Query processors.
